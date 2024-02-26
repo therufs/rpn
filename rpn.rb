@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
-class RpnCalculator
-  # Consume a series of numbers, followed by a series of operands.
-  # When a sufficient arity of numbers per operand is available,
-  # execute the operation and return the value.
-  # Use the returned value as the first argument.
+# The RPN Calculator accepts a series of numbers and basic operators (+ - * /).
+# The last full set of elements passed will be evaluated in subject-object-verb
+# order. The result is then supplied as the object for the next set of elements.
 
+# Step-by-step example: 5 8 2 - -
+# > 8 2 -
+# > 6
+# > 5 -
+# > -1
+class RpnCalculator
   OPERATORS = %w[+ - / *].freeze
   NUMBER_PATTERN = /[0-9]+/ # ruby helpfully casts anything that isn't a number to 0
   ARITY = 2
