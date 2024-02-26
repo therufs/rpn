@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 class RpnCalculator
+  # Consume a series of numbers, followed by a series of operands.
+  # When a sufficient arity of numbers per operand is available,
+  # execute the operation and return the value.
+  # Use the returned value as the first argument.
 
-# Consume a series of numbers, followed by a series of operands.
-# When a sufficient arity of numbers per operand is available,
-# execute the operation and return the value.
-# Use the returned value as the first argument.
-
-  OPERATORS = %w(+ - / *)
+  OPERATORS = %w[+ - / *].freeze
   NUMBER_PATTERN = /[0-9]+/ # ruby helpfully casts anything that isn't a number to 0
   ARITY = 2
 
@@ -20,7 +21,7 @@ class RpnCalculator
     # this is kind of a mess -- this doesn't seem like where the arg shd go
     # could make a case statement based on a flag and then readlines or readfile
     if input.nil?
-      puts "awaiting input ..."
+      puts 'awaiting input ...'
       until enough_to_work_with_on_the_stacks?
         input = readlines
         sort_input(input)
@@ -49,7 +50,7 @@ class RpnCalculator
   end
 
   def do_math
-    while enough_to_work_with_on_the_stacks?; do_something_about_it; end
+    do_something_about_it while enough_to_work_with_on_the_stacks?
   end
 
   def enough_to_work_with_on_the_stacks?
@@ -63,7 +64,7 @@ class RpnCalculator
     operator = @operators.shift
     @next_operand ||= @operands.shift
     rest_of_operands = []
-    (ARITY - 1).times { rest_of_operands <<  @operands.shift }
+    (ARITY - 1).times { rest_of_operands << @operands.shift }
 
     @next_operand = @next_operand.send(operator, *rest_of_operands)
   end

@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require_relative './rpn'
+require_relative 'rpn'
 
-puts "ctrl + C or q to quit"
+puts 'ctrl + C or q to quit'
 calculator = RpnCalculator.new
-calculator.run while true
+loop { calculator.run }
