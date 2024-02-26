@@ -7,6 +7,6 @@ puts 'ctrl + D or q to quit'
 calculator = RpnCalculator.new
 begin
   loop { calculator.run }
-rescue NoMethodError # why? i cannot say.
+rescue NoMethodError
   exit
 end

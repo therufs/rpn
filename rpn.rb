@@ -22,8 +22,6 @@ class RpnCalculator
   end
 
   def receive_input(input = nil)
-    # this is kind of a mess -- this doesn't seem like where the arg shd go
-    # could make a case statement based on a flag and then readlines or readfile
     if input.nil?
       puts 'awaiting input ...'
       until enough_to_work_with_on_the_stacks?
@@ -65,11 +63,10 @@ class RpnCalculator
   def do_something_about_it
     # Get one operator and ARITY operands off the top
     operator = @operators.shift
-    @next_operand ||= @operands.shift
-    rest_of_operands = []
-    (ARITY - 1).times { rest_of_operands << @operands.shift }
+    @next_operand ||= @operands.pop
+    subject = @operands.pop
 
-    @next_operand = @next_operand.send(operator, *rest_of_operands)
+    @next_operand = subject.send(operator, @next_operand)
   end
 
   def run

@@ -15,7 +15,7 @@ For further details on running the calculator, see [below](#how-to-run-your-code
 
 ## Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project
 
-There are a few obvious stubs; for instance, I decided not to write tests for IO since running the program trivially demonstrates their functionality. If/when the calculator was further developed to read from different input sources, it would be worthwhile to test all possible types of IO and to confirm equivalent outputs.
+There are a few obvious stubs; for instance, I decided not to write tests for IO since running the program trivially demonstrates their functionality. For similar reasons, there aren't any of what I'd consider "integration" tests. If/when the calculator was further developed to read from different input sources, it would be worthwhile to test all possible types of IO and to confirm equivalent outputs.
 
 For similar reasons, the `run` command itself is not tested. If this project were going to become a proper command line tool, testing across multiple operating environments would be warranted.
 
@@ -64,5 +64,3 @@ Clone the code from Github: `$ git clone https://github.com/therufs/rpn.git`
 $ cd rpn
 $ ./run.rb
 ```
-
-
