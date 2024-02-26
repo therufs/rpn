@@ -40,6 +40,8 @@ class RpnCalculator
         @operators << p.to_sym
       elsif p == 'q'
         exit
+      else
+        complain_politely(p)
       end
     end
   end
@@ -82,5 +84,9 @@ class RpnCalculator
 
   def tell_us_how_much
     puts @next_operand
+  end
+
+  def complain_politely(reason)
+    puts "Characters #{reason} don't seem to be numbers or accepted operators."
   end
 end
