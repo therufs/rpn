@@ -33,8 +33,7 @@ class RpnCalculator
 
   def sort_input(input)
     parsed_input = parse(input)
-    parsed_input.each do |p|
-      # this isn't very POODR :(
+    parsed_input.each do |p| # :(
       if NUMBER_PATTERN.match p
         @operands << p.to_f
       elsif OPERATORS.include? p

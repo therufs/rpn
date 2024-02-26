@@ -3,6 +3,10 @@
 
 require_relative 'rpn'
 
-puts 'ctrl + C or q to quit'
+puts 'ctrl + D or q to quit'
 calculator = RpnCalculator.new
-loop { calculator.run }
+begin
+  loop { calculator.run }
+rescue NoMethodError # why? i cannot say.
+  exit
+end
