@@ -39,7 +39,3 @@ class RpnCalculator
   def perform_operations
   end
 end
-
-puts "ctrl + C to quit"
-calculator = RpnCalculator.new
-calculator.calculate
