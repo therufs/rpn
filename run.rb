@@ -1,5 +1,7 @@
+#!/usr/bin/env ruby
+
 require_relative './rpn'
 
-puts "ctrl + C to quit"
+puts "ctrl + C or q to quit"
 calculator = RpnCalculator.new
-calculator.calculate
+calculator.run while true
