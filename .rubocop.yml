@@ -1,0 +1,21 @@
+AllCops:
+  Exclude:
+  <% `git status --ignored --porcelain`.lines.grep(/^!! /).each do |path| %>
+    - <%= path.sub(/^!! /, '').sub(/\/$/, '/**/*') %>
+  <% end %>
+
+  SuggestExtensions: false
+
+  NewCops: enable
+
+Metrics/MethodLength:
+  Exclude:
+  - 'spec/*'
+
+Metrics/BlockLength:
+  Exclude:
+  - 'spec/*'
+
+Lint/EmptyBlock:
+  Exclude:
+  - 'spec/*'
