@@ -11,6 +11,7 @@ For further details on running the calculator, see [below](#how-to-run-your-code
 - Ruby: This is the language and ecosystem in which I'm most comfortable, and I'm reasonably confident that the script will not need to handle performance demands such as high throughput or that might warrant considering a language with better performance for those concerns. This also allowed me to invite my old friends rspec, to provide a testing framework that I knew to be descriptive and easy to work with, and rubocop, to keep my code tidy (and proffer accepted opinions on what counts as "tidy"!)
 - Separation of concerns: Beyond separating the `run` script from the RpnCalculator class, I haven't broken down the code further. As the codebase expands, it would be wortwhile to consider creating separate classes for concerns such as different IO streams.
 - Implementing a stack for operators: Research has indicated that this is an unorthodox choice; it does complicate the implementation more than simply discarding superfluous operators would. I admit I'm not entirely clear on the real-world applications of RPN calculation, so this might be a good candidate for revision.
+- A late-arriving test case ("it 'handles interleaved input types (second example)'") revealed that my implementation was incorrectly assigning operators to operands. Resolving this problem illuminated a conceptual problem that had plagued me throughout the implementation: `push` and `pop` retain the order of the characters as printed, and are the terminology commonly used with stacks, but `unshift` puts the operands that will be needed sooner at the head of the array, which intuitively feels to me like where they "should" go.
 - `clear` -- Having to exit and restart the calculator whenever one messes up an input is pretty annoying.
 
 ## Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project
@@ -30,10 +31,10 @@ More features this calculator could include:
 
 ## How to run your code, if applicable
 
-You may either [run in codespace](#codespace) or [install locally](#local-install).  
+You may either [run in Codespaces](#codespaces) or [install locally](#local-install).  
 **Note**: These local instructions have not been tested for compatibility outside of my own development environment (MacOS Mojave, Ruby 3.3.0). If you encounter errors that you think may be related to the Ruby version, please [let me know](mailto:rcfreese@gmail.com)!
 
-### Codespace
+### Codespaces
 
 1. Fork the repository: <https://github.com/therufs/rpn/fork>
 1. From the forked repository, open the Code menu (green button), then the Codespaces tab

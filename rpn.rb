@@ -11,10 +11,10 @@
 # > -1
 class RpnCalculator
   OPERATORS = %w[+ - / *].freeze
-  NUMBER_PATTERN = /[0-9]+/ # ruby helpfully casts anything that isn't a number to 0
+  NUMBER_PATTERN = /[0-9]+/ # Ruby helpfully casts anything that isn't a number to 0
   ARITY = 2
 
-  attr_reader :next_operand
+  attr_reader :result
 
   def initialize
     @operands = []
@@ -40,6 +40,7 @@ class RpnCalculator
         @operands << p.to_f
       elsif OPERATORS.include? p
         @operators << p.to_sym
+        do_something_about_it if enough_to_work_with_on_the_stacks?
       elsif p == 'q'
         exit
       elsif p == 'c'
@@ -55,18 +56,18 @@ class RpnCalculator
   end
 
   def enough_to_work_with_on_the_stacks?
-    # will need to surface this into args if ever a non-binary operator
     ops_length = @operands.length
-    @operators.any? && (ops_length >= ARITY || (@next_operand && (ops_length + 1 >= ARITY)))
+    @operators.any? && ops_length >= ARITY
   end
 
   def do_something_about_it
     # Get one operator and ARITY operands off the top
-    operator = @operators.shift
-    @next_operand ||= @operands.pop
+    operator = @operators.pop
+    next_operand = @operands.pop
     subject = @operands.pop
 
-    @next_operand = subject.send(operator, @next_operand)
+    @result = subject.send(operator, next_operand)
+    @operands << @result
   end
 
   def run
@@ -86,7 +87,7 @@ class RpnCalculator
   end
 
   def tell_us_how_much
-    puts @next_operand
+    puts @result
   end
 
   def complain_politely(reason)
@@ -96,6 +97,6 @@ class RpnCalculator
   def clear
     @operands = []
     @operators = []
-    @next_operand = nil
+    @result = nil
   end
 end
