@@ -40,7 +40,7 @@ class RpnCalculator
         @operands << p.to_f
       elsif OPERATORS.include? p
         @operators << p.to_sym
-        do_something_about_it if enough_to_work_with_on_the_stacks?
+        do_math
       elsif p == 'q'
         exit
       elsif p == 'c'
